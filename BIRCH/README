@@ -1,0 +1,44 @@
+./birch is the BIRCH executable compiled in Linux.
+----------------------------------------------------------------------------------------------------------------------------
+Running BIRCH:
+There are 4 files involved in input for each execution:
+and I have put some samples in the directory.
+
+An example command for running birch on the sample.data data file:
+./birch sample.para sample.scheme sample.proj sample.data
+
+sample.para	parameter settings of birch as mentioned 
+		in SIGMOD paper [1]. 	 
+		it is explained in "para.config" with those places that 
+		you might need to change specifically commented.
+
+sample.scheme	scheme description of the data set as mentioned
+		in SIGMOD paper.
+
+sample.proj	projection file of the data set as mentioned
+		in SIGMOD paper.
+		each line is a projection, and each projection is used to 
+		build tree and do clustering.
+
+sample.data		data set (ASCII format)
+
+The output file containing cluster is:
+sample.para+sample.scheme+sample.proj+sample.data-0-cluster
+
+Fomat of the above file:
+1. Each line represents a cluster.
+2. Each line has the following:
+No. Points	---	Mean vector	---	\sigma^2
+
+For the convinience of the user we have written a small shell script which prepares the para, scheme, proj files.
+It is "prepInput.sh". The user need to change only the following parameters:
+1. K (see line no.1) --- More the value of K more the number of leaves in the BIRCH tree. Hence more clusters and vice-versa.
+2. K1 (see line no.2) --- The final number of clusters which the BIRCH should output.
+If K1=500, then sample.para+sample.scheme+sample.proj+sample.data-0-cluster will have 500 lines.
+Ensure that K > K1.
+3. n (see line no.3) --- dimensionality of the training examples.
+The prepInput.sh script produces three files: p.para, p.scheme and p.proj files.
+genPara.awk and para.template are two files used by prepInput.sh and need not be used by the user.
+----------------------------------------------------------------------------------------------------------------------------
+
+[1]. Tian Zhang, Raghu Ramakrishnan and Miron Livny. BIRCH: An Efficient Data Clustering Method for Very Large Databases. In Proceedings of the 1996 ACM SIGMOD International Conference on Management of Data, pages 103--114.

@@ -1,0 +1,13 @@
+type Generic-Schema ascii
+comment //
+whitespace ' '
+attr a1 double
+attr a2 double
+attr a3 double
+attr a4 double
+attr a5 double
+attr a6 double
+attr a7 double
+attr a8 double
+attr a9 double
+attr a10 double
